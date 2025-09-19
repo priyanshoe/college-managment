@@ -11,17 +11,23 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
+import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 
 export default function StudentRemovePage() {
     const router = useRouter();
 
+    const [data, setdata] = useState({
+        collegeEmail: "",
+        aadhaar : ""
+    })
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle form submission logic here
-        console.log("Form submitted");
-        router.push('/teacher')
+        axios.post("http://localhost:3030/api/student/remove/", data)
+        // router.push('/teacher')
     }
 
     return (
@@ -36,6 +42,8 @@ export default function StudentRemovePage() {
                         required
                         className="border-none rounded bg-gray-700 px-3 py-2"
                         placeholder="student@college.edu"
+                        value={data.collegeEmail}
+                        onChange={e => setdata({ ...data, collegeEmail: e.target.value })}
                     />
                 </label>
                 <label className="flex flex-col">
@@ -48,6 +56,8 @@ export default function StudentRemovePage() {
                         maxLength={12}
                         className="border-none rounded px-3 py-2 bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
                         placeholder="123412341234"
+                        value={data.aadhaar}
+                        onChange={e => setdata({...data, aadhaar: e.target.value})}
                     />
                 </label>
                 <AlertDialog>

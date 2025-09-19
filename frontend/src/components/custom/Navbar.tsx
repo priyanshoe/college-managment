@@ -7,15 +7,6 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog"
-
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useRouter } from "next/navigation";
@@ -30,9 +21,9 @@ export default function Navbar() {
                     <DropdownMenu>
                         <DropdownMenuTrigger>Admission</DropdownMenuTrigger>
                         <DropdownMenuContent>
-                            <DropdownMenuItem onClick={() => router.push("/student/addmission/new")}>New Admission</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => router.push("/student/admission/new")}>New Admission</DropdownMenuItem>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem onClick={() => router.push("/student/addmission/remove")}>Remove Admission</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => router.push("/student/admission/remove")}>Remove Admission</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
 
@@ -40,7 +31,6 @@ export default function Navbar() {
                         <DropdownMenuTrigger>Students</DropdownMenuTrigger>
                         <DropdownMenuContent>
                             <DropdownMenuItem onClick={() => router.push("/student/details")}>Search Student</DropdownMenuItem>
-                            <DropdownMenuItem>Update Student</DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem>Update Marks</DropdownMenuItem>
                         </DropdownMenuContent>

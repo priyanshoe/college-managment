@@ -12,6 +12,9 @@ import { useRouter } from "next/navigation";
 
 
 export default function studentDetails() {
+    let role = "teacher"
+
+    
     const router = useRouter();
     const handleclick=()=>{
         if(role=="teacher"){
@@ -40,15 +43,15 @@ export default function studentDetails() {
                 course: "Computer Science",
                 year: "3rd",
                 dob: "2002-05-15",
-                address: "123 Main St, City, Country"
+                address: "123 Main St, City, Country",
+                college_email:"johndoe@college.edu"
             })
             setstudentLogged(true);
         }
     }
 
-    const [studentLogged, setstudentLogged] = useState(true)
+    const [studentLogged, setstudentLogged] = useState(false)
 
-    let role = "teacher"
 
     if (studentLogged) {
         return (
@@ -65,9 +68,14 @@ export default function studentDetails() {
                         <p className="text-gray-300"><strong className="font-semibold text-gray-100">Date of Birth:</strong> {studentData.dob}</p>
                         <p className="text-gray-300"><strong className="font-semibold text-gray-100">Address:</strong> {studentData.address}</p>
                     </div>
-                    <Button className="mt-3" variant={"secondary"}
-                    onClick={() => router.push(`/${role}`)}
-                    >Home</Button>
+                    <div className="flex justify-between">
+                        <Button className="mt-3" variant={"secondary"}
+                        onClick={() => router.push(`/${role}`)}
+                        >Home</Button>
+                        <Button className="mt-3" variant={"secondary"}
+                        onClick={() => router.push(`/student/update?college_email=${studentData.college_email}`)}
+                        >Update</Button>
+                    </div>
                 </div>
             </div>
         );

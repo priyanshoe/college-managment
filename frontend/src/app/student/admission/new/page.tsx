@@ -1,4 +1,5 @@
 'use client'
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -24,8 +25,14 @@ export default function StudentAdmission() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("Student Data Submitted:", studentData);
-        router.push('/teacher')
+        axios.post("http://localhost:3030/api/student/add/", studentData)
+        .catch(err => console.log(err))
+        .then((res:any) => {
+            if(res.data) alert("Student added")
+            else alert("Student already exist")
+        })
+        .then(()=> router.push('/teacher'))
+        
     };
 
     return(
